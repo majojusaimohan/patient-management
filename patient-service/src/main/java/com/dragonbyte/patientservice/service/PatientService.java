@@ -1,6 +1,7 @@
 package com.dragonbyte.patientservice.service;
 
 import com.dragonbyte.patientservice.dto.PatientResponseDto;
+import com.dragonbyte.patientservice.mapper.PatientMapper;
 import com.dragonbyte.patientservice.model.Patient;
 import com.dragonbyte.patientservice.repository.PatientRepository;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,10 @@ public class PatientService {
 
     public  List<PatientResponseDto> getPatients(){
         List<Patient> patients= patientRepository.findAll();
+
+        List<PatientResponseDto> patientResponseDTOs =
+                patients.stream().map(PatientMapper::toDto).toList();
+
+        return patientResponseDTOs;
     }
 }
