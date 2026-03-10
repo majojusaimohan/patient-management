@@ -1,5 +1,6 @@
 package com.dragonbyte.patientservice.service;
 
+import com.dragonbyte.patientservice.dto.PatientRequestDTO;
 import com.dragonbyte.patientservice.dto.PatientResponseDto;
 import com.dragonbyte.patientservice.mapper.PatientMapper;
 import com.dragonbyte.patientservice.model.Patient;
@@ -24,5 +25,10 @@ public class PatientService {
                 patients.stream().map(PatientMapper::toDto).toList();
 
         return patientResponseDTOs;
+    }
+
+    public PatientResponseDto createPatient(PatientRequestDTO patientRequestDTO){
+        Patient newPatient = patientRepository.save(PatientMapper.toModel(patientRequestDTO));
+        return PatientMapper.toDto(newPatient);
     }
 }
