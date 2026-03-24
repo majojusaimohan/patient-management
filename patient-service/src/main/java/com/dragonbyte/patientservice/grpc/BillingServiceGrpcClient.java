@@ -12,6 +12,7 @@ public class BillingServiceGrpcClient {
 
     public BillingServiceGrpcClient(
             @Value("${billing.service.address:localhost}") String serverAddress,
+
             BillingServiceGrpc.BillingServiceBlockingStub blockingStub) {
         this.blockingStub = blockingStub;
     }
